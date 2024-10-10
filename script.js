@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    const sections = document.querySelectorAll('.section');
+    const cards = document.querySelectorAll('.card');
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -10,10 +10,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     }, { threshold: 0.1 });
 
-    sections.forEach(section => {
-        observer.observe(section);
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.5s, transform 0.5s';
+    cards.forEach((card, index) => {
+        observer.observe(card);
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.5s, transform 0.5s';
+        card.style.animationDelay = `${index * 0.1}s`;
     });
 });
