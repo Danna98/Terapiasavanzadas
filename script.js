@@ -1,16 +1,17 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     const sections = document.querySelectorAll('.section');
     
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animated');
-            }
-        });
-    }, { threshold: 0.1 });
+    // IntersectionObserver comentado temporalmente para probar si afecta la visibilidad de las imágenes
+    // const observer = new IntersectionObserver((entries) => {
+    //     entries.forEach(entry => {
+    //         if (entry.isIntersecting) {
+    //             entry.target.classList.add('animated');
+    //         }
+    //     });
+    // }, { threshold: 0.1 });
 
     sections.forEach((section, index) => {
-        observer.observe(section);
+        // observer.observe(section); // Comentado para que no interfiera
         section.style.animationDelay = `${index * 0.1}s`;
     });
 
