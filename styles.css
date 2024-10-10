@@ -13,7 +13,7 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-image: url('https://via.placeholder.com/1920x1080'); /* Imagen de prueba */
+    background-image: url('background.jpg.png');
     background-size: cover;
     background-attachment: fixed;
 }
@@ -42,8 +42,7 @@ h1 {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     margin-bottom: 30px;
     padding: 25px;
-    opacity: 1;  /* Asegura que las secciones sean visibles */
-    transform: none;  /* Elimina el desplazamiento */
+    transition: all 0.3s ease;
 }
 
 h2 {
@@ -68,7 +67,6 @@ h2 {
 }
 
 .card:hover {
-    transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
