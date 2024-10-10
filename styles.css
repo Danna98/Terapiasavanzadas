@@ -1,33 +1,16 @@
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
-}
-
-#mindmap {
-    width: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
-    overflow: auto;
+    margin: 0;
 }
 
-.node {
-    cursor: pointer;
-}
-
-.node rect {
-    fill: #9b59b6;
-    stroke: #8e44ad;
-    stroke-width: 1px;
-}
-
-.node text {
-    font-size: 12px;
-    fill: #333;
-}
-
-.link {
-    fill: none;
-    stroke: #8e44ad;
-    stroke-width: 1px;
+.mermaid {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
