@@ -2,15 +2,6 @@ const data = {
     name: "Terapias Avanzadas (ATMPs)",
     children: [
         {
-            name: "Definición y Características",
-            children: [
-                {name: "Medicamentos basados en genes, tejidos o células"},
-                {name: "Tratamientos altamente personalizados"},
-                {name: "Potencial para enfermedades intratables"},
-                {name: "Fabricación compleja y especializada"}
-            ]
-        },
-        {
             name: "Clasificación",
             children: [
                 {
@@ -47,13 +38,20 @@ const data = {
             ]
         },
         {
+            name: "Características",
+            children: [
+                {name: "Tratamientos personalizados"},
+                {name: "Potencial para enfermedades intratables"},
+                {name: "Fabricación compleja y especializada"}
+            ]
+        },
+        {
             name: "Aplicaciones Clínicas",
             children: [
                 {name: "Cánceres hematológicos"},
                 {name: "Enfermedades genéticas raras"},
                 {name: "Trastornos neurodegenerativos"},
-                {name: "Enfermedades cardiovasculares"},
-                {name: "Lesiones de tejidos y órganos"}
+                {name: "Enfermedades cardiovasculares"}
             ]
         },
         {
@@ -62,8 +60,7 @@ const data = {
                 {name: "Altos costos de desarrollo"},
                 {name: "Complejidad en fabricación"},
                 {name: "Regulaciones específicas"},
-                {name: "Seguimiento a largo plazo"},
-                {name: "Acceso y equidad"}
+                {name: "Seguimiento a largo plazo"}
             ]
         },
         {
@@ -73,69 +70,117 @@ const data = {
                 {name: "FDA: CBER, designación RMAT"},
                 {name: "PMDA: Aprobación condicional"}
             ]
-        },
-        {
-            name: "Futuro y Tendencias",
-            children: [
-                {name: "Edición genómica (CRISPR-Cas9)"},
-                {name: "Combinación con IA y nanotecnología"},
-                {name: "Expansión a nuevas áreas terapéuticas"},
-                {name: "Reducción de costos de producción"}
-            ]
         }
     ]
 };
 
-const width = window.innerWidth;
-const height = window.innerHeight;
+const margin = {top: 20, right: 90, bottom: 30, left: 90},
+    width = 1600 - margin.left - margin.right,
+    height = 800 - margin.top - margin.bottom;
 
-const svg = d3.select("#mindmap")
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height);
+const svg = d3.select("#mindmap").append("svg")
+    .attr("width", width + margin.right + margin.left)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-const g = svg.append("g")
-    .attr("transform", `translate(${width / 2},${height / 2})`);
+const i = 0,
+    duration = 750,
+    root;
 
-const tree = d3.tree()
-    .size([2 * Math.PI, Math.min(width, height) / 2 - 100])
-    .separation((a, b) => (a.parent == b.parent ? 1 : 2) / a.depth);
+const treemap = d3.tree().size([height, width]);
 
-const root = tree(d3.hierarchy(data));
+root = d3.hierarchy(data, function(d) { return d.children; });
+root.x0 = height / 2;
+root.y0 = 0;
 
-const link = g.selectAll(".link")
-    .data(root.links())
-    .join("path")
-    .attr("class", "link")
-    .attr("d", d3.linkRadial()
-        .angle(d => d.x)
-        .radius(d => d.y));
+update(root);
 
-const node = g.selectAll(".node")
-    .data(root.descendants())
-    .join("g")
-    .attr("class", d => "node" + (d.children ? " node--internal" : " node--leaf"))
-    .attr("transform", d => `rotate(${d.x * 180 / Math.PI - 90}) translate(${d.y},0)`)
-    .attr("data-depth", d => d.depth);
+function update(source) {
+    const treeData = treemap(root);
+    const nodes = treeData.descendants(),
+        links = treeData.descendants().slice(1);
 
-node.append("circle")
-    .attr("r", 4);
+    nodes.forEach(function(d){ d.y = d.depth * 180});
 
-node.append("text")
-    .attr("dy", "0.31em")
-    .attr("x", d => d.x < Math.PI === !d.children ? 6 : -6)
-    .attr("text-anchor", d => d.x < Math.PI === !d.children ? "start" : "end")
-    .attr("transform", d => d.x >= Math.PI ? "rotate(180)" : null)
-    .text(d => d.data.name)
-    .clone(true).lower()
-    .attr("stroke", "white");
+    const node = svg.selectAll('g.node')
+        .data(nodes, function(d) {return d.id || (d.id = ++i); });
 
-const zoom = d3.zoom()
-    .scaleExtent([0.5, 5])
-    .on("zoom", zoomed);
+    const nodeEnter = node.enter().append('g')
+        .attr('class', 'node')
+        .attr("transform", function(d) {
+            return "translate(" + source.y0 + "," + source.x0 + ")";
+        });
 
-svg.call(zoom);
+    nodeEnter.append('rect')
+        .attr('class', 'node')
+        .attr('width', function(d) { return d.data.name.length * 7; })
+        .attr('height', 20)
+        .attr('y', -10);
 
-function zoomed(event) {
-    g.attr("transform", event.transform);
+    nodeEnter.append('text')
+        .attr("dy", ".35em")
+        .attr("x", function(d) {
+            return d.children || d._children ? -13 : 13;
+        })
+        .attr("text-anchor", function(d) {
+            return d.children || d._children ? "end" : "start";
+        })
+        .text(function(d) { return d.data.name; });
+
+    const nodeUpdate = nodeEnter.merge(node);
+
+    nodeUpdate.transition()
+        .duration(duration)
+        .attr("transform", function(d) { 
+            return "translate(" + d.y + "," + d.x + ")";
+        });
+
+    nodeUpdate.select('rect.node')
+        .attr('width', function(d) { return d.data.name.length * 7; })
+        .attr('height', 20)
+        .attr('y', -10);
+
+    const nodeExit = node.exit().transition()
+        .duration(duration)
+        .attr("transform", function(d) {
+            return "translate(" + source.y + "," + source.x + ")";
+        })
+        .remove();
+
+    const link = svg.selectAll('path.link')
+        .data(links, function(d) { return d.id; });
+
+    const linkEnter = link.enter().insert('path', "g")
+        .attr("class", "link")
+        .attr('d', function(d){
+            const o = {x: source.x0, y: source.y0}
+            return diagonal(o, o)
+        });
+
+    const linkUpdate = linkEnter.merge(link);
+
+    linkUpdate.transition()
+        .duration(duration)
+        .attr('d', function(d){ return diagonal(d, d.parent) });
+
+    link.exit().transition()
+        .duration(duration)
+        .attr('d', function(d) {
+            const o = {x: source.x, y: source.y}
+            return diagonal(o, o)
+        })
+        .remove();
+
+    nodes.forEach(function(d){
+        d.x0 = d.x;
+        d.y0 = d.y;
+    });
+
+    function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+            C ${(s.y + d.y) / 2} ${s.x},
+              ${(s.y + d.y) / 2} ${d.x},
+              ${d.y} ${d.x}`;
+    }
 }
