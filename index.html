@@ -4,179 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terapias Avanzadas (ATMPs)</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #6c3483;
-            --secondary-color: #8e44ad;
-            --bg-color: #f3e5f5;
-            --text-color: #333;
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-image: url('background.jpg');
-            background-size: cover;
-            background-attachment: fixed;
-            color: var(--text-color);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            transition: background-color 0.5s ease;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        h1 {
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            animation: fadeInDown 1.5s;
-        }
-
-        .section {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-            padding: 25px;
-            transition: all 0.3s ease;
-            animation: fadeIn 1s;
-        }
-
-        .section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-        }
-
-        h2 {
-            color: var(--secondary-color);
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 10px;
-            font-size: 1.8em;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background-color: var(--bg-color);
-            border-radius: 12px;
-            padding: 20px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        h3 {
-            color: var(--primary-color);
-            margin-top: 0;
-            font-size: 1.4em;
-        }
-
-        ul {
-            padding-left: 20px;
-        }
-
-        li {
-            margin-bottom: 10px;
-            transition: transform 0.2s ease;
-        }
-
-        li:hover {
-            transform: translateX(5px);
-        }
-
-        .card-image {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .card:hover .card-image {
-            transform: scale(1.1);
-        }
-
-        .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .theme-toggle:hover {
-            background-color: var(--secondary-color);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes fadeInDown {
-            from { 
-                opacity: 0; 
-                transform: translateY(-50px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .dark-theme {
-            --bg-color: #2c3e50;
-            --text-color: #ecf0f1;
-            --primary-color: #9b59b6;
-            --secondary-color: #8e44ad;
-        }
-
-        .dark-theme .section {
-            background-color: rgba(44, 62, 80, 0.9);
-        }
-
-        .dark-theme .card {
-            background-color: #34495e;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <header>
         <h1>Terapias Avanzadas (ATMPs)</h1>
-        
+    </header>
+    <div class="container">
         <div class="section" id="clasificacion">
             <h2>Clasificación</h2>
             <div class="grid">
                 <div class="card">
-                    <img src="terapia-genica.gif" alt="Terapia Génica" class="card-image">
+                    <img src="terapia-genica.png" alt="Terapia Génica" class="card-image">
                     <h3>Terapia Génica (GTMPs)</h3>
                     <ul>
                         <li>Ácido nucleico recombinante</li>
@@ -185,7 +25,7 @@
                     </ul>
                 </div>
                 <div class="card">
-                    <img src="terapia-celular.gif" alt="Terapia Celular Somática" class="card-image">
+                    <img src="terapia-celular.png" alt="Terapia Celular Somática" class="card-image">
                     <h3>Terapia Celular Somática (CTMPs)</h3>
                     <ul>
                         <li>Células manipuladas</li>
@@ -194,7 +34,7 @@
                     </ul>
                 </div>
                 <div class="card">
-                    <img src="ingenieria-tisular.gif" alt="Ingeniería Tisular" class="card-image">
+                    <img src="ingenieria-tisular.png" alt="Ingeniería Tisular" class="card-image">
                     <h3>Ingeniería Tisular (TEPs)</h3>
                     <ul>
                         <li>Células o tejidos modificados</li>
@@ -203,7 +43,7 @@
                     </ul>
                 </div>
                 <div class="card">
-                    <img src="atmps-combinados.gif" alt="ATMPs Combinados" class="card-image">
+                    <img src="atmps-combinados.png" alt="ATMPs Combinados" class="card-image">
                     <h3>ATMPs Combinados</h3>
                     <ul>
                         <li>Incorporan dispositivos médicos</li>
@@ -252,49 +92,6 @@
         </div>
     </div>
 
-    <button class="theme-toggle">Cambiar tema</button>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const sections = document.querySelectorAll('.section');
-            const cards = document.querySelectorAll('.card');
-            const themeToggle = document.querySelector('.theme-toggle');
-            
-            sections.forEach((section, index) => {
-                section.style.animationDelay = `${index * 0.2}s`;
-            });
-
-            cards.forEach(card => {
-                card.addEventListener('mouseover', () => {
-                    card.style.animation = 'pulse 0.5s infinite';
-                });
-
-                card.addEventListener('mouseout', () => {
-                    card.style.animation = 'none';
-                });
-            });
-
-            themeToggle.addEventListener('click', () => {
-                document.body.classList.toggle('dark-theme');
-            });
-
-            // Intersection Observer para animaciones al hacer scroll
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            sections.forEach(section => {
-                observer.observe(section);
-                section.style.opacity = '0';
-                section.style.transform = 'translateY(50px)';
-                section.style.transition = 'opacity 0.5s, transform 0.5s';
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
