@@ -4,70 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terapias Avanzadas (ATMPs)</title>
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        #mermaid { 
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="mermaid" id="mermaid">
-        graph LR
-        A[Terapias Avanzadas ATMPs]
-        A --> B[Clasificación]
-        A --> C[Características]
-        A --> D[Aplicaciones Clínicas]
-        A --> E[Desafíos]
-        A --> F[Aspectos Regulatorios]
+    <div class="container">
+        <h1>Terapias Avanzadas (ATMPs)</h1>
+        
+        <div class="section" id="clasificacion">
+            <h2>Clasificación</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Terapia Génica (GTMPs)</h3>
+                    <ul>
+                        <li>Ácido nucleico recombinante</li>
+                        <li>Vectores virales y no virales</li>
+                        <li>Ejemplo: Luxturna, Zolgensma</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Terapia Celular Somática (CTMPs)</h3>
+                    <ul>
+                        <li>Células manipuladas</li>
+                        <li>Autólogas o alogénicas</li>
+                        <li>Ejemplo: Alofisel, Provenge</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Ingeniería Tisular (TEPs)</h3>
+                    <ul>
+                        <li>Células o tejidos modificados</li>
+                        <li>Regeneración de tejidos</li>
+                        <li>Ejemplo: Holoclar, Spherox</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>ATMPs Combinados</h3>
+                    <ul>
+                        <li>Incorporan dispositivos médicos</li>
+                        <li>Ejemplo: Matrices con células</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-        B --> B1[Terapia Génica GTMPs]
-        B --> B2[Terapia Celular Somática CTMPs]
-        B --> B3[Ingeniería Tisular TEPs]
-        B --> B4[ATMPs Combinados]
+        <div class="section" id="caracteristicas">
+            <h2>Características</h2>
+            <ul>
+                <li>Tratamientos personalizados</li>
+                <li>Potencial para enfermedades intratables</li>
+                <li>Fabricación compleja y especializada</li>
+            </ul>
+        </div>
 
-        D --> D1[Cánceres hematológicos]
-        D --> D2[Enfermedades genéticas raras]
-        D --> D3[Trastornos neurodegenerativos]
-        D --> D4[Enfermedades cardiovasculares]
+        <div class="section" id="aplicaciones">
+            <h2>Aplicaciones Clínicas</h2>
+            <ul>
+                <li>Cánceres hematológicos</li>
+                <li>Enfermedades genéticas raras</li>
+                <li>Trastornos neurodegenerativos</li>
+                <li>Enfermedades cardiovasculares</li>
+            </ul>
+        </div>
 
-        classDef default fill:#f9f,stroke:#333,stroke-width:2px;
-        classDef main fill:#b19cd9,stroke:#966fd6,stroke-width:4px;
-        class A main;
+        <div class="section" id="desafios">
+            <h2>Desafíos</h2>
+            <ul>
+                <li>Altos costos de desarrollo</li>
+                <li>Complejidad en fabricación</li>
+                <li>Regulaciones específicas</li>
+                <li>Seguimiento a largo plazo</li>
+            </ul>
+        </div>
+
+        <div class="section" id="regulacion">
+            <h2>Aspectos Regulatorios</h2>
+            <ul>
+                <li>EMA: Regulación 1394/2007</li>
+                <li>FDA: CBER, designación RMAT</li>
+                <li>PMDA: Aprobación condicional</li>
+            </ul>
+        </div>
     </div>
 
-    <script>
-        mermaid.initialize({
-            startOnLoad: true,
-            theme: 'default',
-            flowchart: {
-                useMaxWidth: false,
-                htmlLabels: true,
-                curve: 'basis',
-                nodeSpacing: 100,
-                rankSpacing: 100,
-            },
-            themeVariables: {
-                primaryColor: '#b19cd9',
-                primaryTextColor: '#fff',
-                primaryBorderColor: '#966fd6',
-                lineColor: '#966fd6',
-                secondaryColor: '#f9f',
-                tertiaryColor: '#fff'
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
