@@ -4,13 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terapias Avanzadas (ATMPs)</title>
-    <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #mermaid { 
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
-    <div class="mermaid">
-        graph TD
-        A[Terapias Avanzadas ATMPs] --> B[Clasificación]
+    <div class="mermaid" id="mermaid">
+        graph LR
+        A[Terapias Avanzadas ATMPs]
+        A --> B[Clasificación]
         A --> C[Características]
         A --> D[Aplicaciones Clínicas]
         A --> E[Desafíos]
@@ -21,39 +38,36 @@
         B --> B3[Ingeniería Tisular TEPs]
         B --> B4[ATMPs Combinados]
 
-        B1 --> B1a[Ácido nucleico recombinante]
-        B1 --> B1b[Vectores virales y no virales]
-        B1 --> B1c[Ejemplo: Luxturna, Zolgensma]
-
-        B2 --> B2a[Células manipuladas]
-        B2 --> B2b[Autólogas o alogénicas]
-        B2 --> B2c[Ejemplo: Alofisel, Provenge]
-
-        B3 --> B3a[Células o tejidos modificados]
-        B3 --> B3b[Regeneración de tejidos]
-        B3 --> B3c[Ejemplo: Holoclar, Spherox]
-
-        B4 --> B4a[Incorporan dispositivos médicos]
-        B4 --> B4b[Ejemplo: Matrices con células]
-
-        C --> C1[Tratamientos personalizados]
-        C --> C2[Potencial para enfermedades intratables]
-        C --> C3[Fabricación compleja y especializada]
-
         D --> D1[Cánceres hematológicos]
         D --> D2[Enfermedades genéticas raras]
         D --> D3[Trastornos neurodegenerativos]
         D --> D4[Enfermedades cardiovasculares]
 
-        E --> E1[Altos costos de desarrollo]
-        E --> E2[Complejidad en fabricación]
-        E --> E3[Regulaciones específicas]
-        E --> E4[Seguimiento a largo plazo]
-
-        F --> F1[EMA: Regulación 1394/2007]
-        F --> F2[FDA: CBER, designación RMAT]
-        F --> F3[PMDA: Aprobación condicional]
+        classDef default fill:#f9f,stroke:#333,stroke-width:2px;
+        classDef main fill:#b19cd9,stroke:#966fd6,stroke-width:4px;
+        class A main;
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true,
+                curve: 'basis',
+                nodeSpacing: 100,
+                rankSpacing: 100,
+            },
+            themeVariables: {
+                primaryColor: '#b19cd9',
+                primaryTextColor: '#fff',
+                primaryBorderColor: '#966fd6',
+                lineColor: '#966fd6',
+                secondaryColor: '#f9f',
+                tertiaryColor: '#fff'
+            }
+        });
+    </script>
 </body>
 </html>
